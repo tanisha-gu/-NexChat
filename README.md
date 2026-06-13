@@ -265,6 +265,3 @@ docker run -p 8000:8000 nexchat
 
 ---
 
-## 📄 License
-
-MIT — free to use, modify, and showcase in your portfolio.
