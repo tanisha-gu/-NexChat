@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexChat — Real-time Messaging</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     AUTH SCREEN
+══════════════════════════════════════════════════════ -->
+<div id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div class="logo-icon">💬</div>
+      <h1>NexChat</h1>
+      <p>Real-time messaging, reimagined</p>
+    </div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Sign In</button>
+      <button class="auth-tab" data-tab="register">Create Account</button>
+    </div>
+
+    <!-- Login Form -->
+    <div id="login-form">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="login-username" placeholder="your_username" autocomplete="username" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" />
+      </div>
+      <button class="btn-primary" id="login-btn">Sign In</button>
+    </div>
+
+    <!-- Register Form -->
+    <div id="register-form" style="display:none">
+      <div class="form-group">
+        <label>Display Name</label>
+        <input type="text" id="reg-display" placeholder="Your Name" />
+      </div>
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="reg-username" placeholder="unique_handle" autocomplete="username" />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="reg-email" placeholder="you@example.com" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="reg-password" placeholder="Min 6 characters" autocomplete="new-password" />
+      </div>
+      <button class="btn-primary" id="register-btn">Create Account</button>
+    </div>
+
+    <div class="auth-error" id="auth-error"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     APP SCREEN
+══════════════════════════════════════════════════════ -->
+<div id="app-screen">
+
+  <!-- ── Sidebar ────────────────────────────────────── -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <span class="app-name">💬 NexChat</span>
+      <button class="icon-btn" id="new-chat-btn" title="New direct message">✏️</button>
+      <button class="icon-btn" id="new-group-btn" title="New group">👥</button>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" id="sidebar-search" placeholder="Search conversations..." />
+    </div>
+
+    <div class="room-list" id="room-list">
+      <!-- Rendered by JS -->
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="my-avatar" id="my-avatar">A</div>
+      <span class="my-username" id="my-display">Loading...</span>
+      <button class="icon-btn" id="logout-btn" title="Sign out">🚪</button>
+    </div>
+  </div>
+
+  <!-- ── Chat Area ────────────────────────────────────── -->
+  <div class="chat-area">
+
+    <!-- Empty State -->
+    <div class="empty-state" id="empty-state">
+      <div class="icon">💬</div>
+      <h3>Select a chat to start</h3>
+      <p>or click ✏️ to message someone new</p>
+    </div>
+
+    <!-- Active Chat -->
+    <div id="chat-main" style="display:none;flex-direction:column;flex:1;min-height:0">
+
+      <!-- Header -->
+      <div class="chat-header">
+        <div class="room-avatar" id="chat-avatar" style="background:#7c6af7;width:36px;height:36px;font-size:15px">?</div>
+        <div class="chat-header-info">
+          <div class="chat-header-name" id="chat-header-name">Chat</div>
+          <div class="chat-header-status" id="chat-header-status"></div>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div class="messages-container" id="messages-container"></div>
+
+      <!-- Typing indicator -->
+      <div class="typing-indicator" id="typing-indicator">
+        <div class="typing-dots">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+        <span class="typing-text">Someone is typing...</span>
+      </div>
+
+      <!-- Reply bar -->
+      <div class="reply-bar" id="reply-bar">
+        <div class="reply-bar-content" id="reply-preview-text">Replying to...</div>
+        <button class="icon-btn" id="reply-cancel">✕</button>
+      </div>
+
+      <!-- Input area -->
+      <div class="input-area">
+        <textarea
+          id="message-input"
+          placeholder="Type a message... (Enter to send, Shift+Enter for newline)"
+          rows="1"
+        ></textarea>
+        <button class="send-btn" id="send-btn" title="Send">➤</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     MODALS
+══════════════════════════════════════════════════════ -->
+
+<!-- New Direct Message Modal -->
+<div class="modal-overlay" id="user-search-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>New Message</h3>
+      <button class="icon-btn modal-close">✕</button>
+    </div>
+    <div class="modal-search">
+      <input type="text" id="user-search-input" placeholder="Search by name or username..." />
+    </div>
+    <div class="modal-results" id="user-search-results"></div>
+  </div>
+</div>
+
+<!-- New Group Modal -->
+<div class="modal-overlay" id="group-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>New Group Chat</h3>
+      <button class="icon-btn modal-close">✕</button>
+    </div>
+    <div style="padding:20px">
+      <div class="form-group">
+        <label>Group Name</label>
+        <input type="text" id="group-name-input" placeholder="e.g. Dev Team, Project Alpha..." />
+      </div>
+      <button class="btn-primary" id="create-group-btn">Create Group</button>
+    </div>
+  </div>
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
