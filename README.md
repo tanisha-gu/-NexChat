@@ -248,17 +248,7 @@ docker run -p 8000:8000 nexchat
 
 ---
 
-## 🎯 Resume Bullet Points
 
-> Copy-paste ready for your CV:
-
-- **Architected NexChat**, a real-time chat platform in Python (FastAPI + WebSockets), supporting 500+ concurrent WS connections with JWT auth and BCrypt password hashing  
-- **Designed layered clean architecture** — Service layer, Pydantic DTOs, async SQLAlchemy ORM — with full separation of concerns and zero business logic in route handlers  
-- **Implemented WebSocket event system** with room-level broadcast, typing indicators, presence tracking, and reply threading across direct and group chats  
-- **Wrote 14 async integration tests** (pytest-asyncio + HTTPX) covering auth, room creation, membership enforcement, pagination, and edge cases  
-- **Built zero-dependency vanilla JS frontend** with WebSocket client, event-driven state management, real-time UI rendering, and responsive dark-mode design  
-
----
 
 ## 🛠️ What to Add Next (for even more ✨)
 
