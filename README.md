@@ -1,4 +1,4 @@
-# 💬 NexChat — Real-time Chat Application
+#  NexChat — Real-time Chat Application
 
 > A production-grade WebSocket chat app built with **Python (FastAPI)**, **HTML/CSS/JS**, and clean architecture principles.  
 > Built to demonstrate **1 year of backend experience** — beyond tutorial-level, built like a real product.
@@ -22,7 +22,7 @@
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 nexchat/
@@ -72,7 +72,7 @@ nexchat/
 
 ---
 
-## ⚡ Tech Stack
+## Tech Stack
 
 | Layer | Technology | Why |
 |---|---|---|
@@ -142,7 +142,7 @@ Message ────────────────────────
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### 1. Clone & Setup
 
@@ -178,7 +178,7 @@ pytest tests/ -v
 
 ---
 
-## 🌍 Production Deployment
+## Production Deployment
 
 ### Environment Variables (`.env`)
 
