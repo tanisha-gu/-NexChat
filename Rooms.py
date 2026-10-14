@@ -8,7 +8,7 @@ from app.core.security import get_current_user_id
 
 router = APIRouter(prefix="/rooms", tags=["Rooms"])
 
-
+#router
 @router.get("/")
 async def list_rooms(
     user_id: int = Depends(get_current_user_id),
